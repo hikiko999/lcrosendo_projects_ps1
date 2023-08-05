@@ -10,7 +10,15 @@ Write-Host "Disable WSL and Virtual Machine Platform"
 Write-Host "----------------"
 Read-Host "Enter to continue"
 Write-Host "----------------"
-Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
-Write-Host "----------------"
-Write-Host "Features Disabled. Make sure to restart to complete"
+try {
+    Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+    Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+
+    Write-Host "----------------"
+    Write-Host "Features Disabled. Make sure to restart to complete"
+
+}
+catch {
+    Write-Host "Error occured."
+    Write-Host $_
+}
