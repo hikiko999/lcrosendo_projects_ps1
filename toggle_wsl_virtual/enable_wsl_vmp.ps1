@@ -9,7 +9,15 @@ Write-Host "Enable WSL and Virtual Machine Platform"
 Write-Host "----------------"
 Read-Host "Enter to continue"
 Write-Host "----------------"
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
-Write-Host "----------------"
-Write-Host "Features Enabled. Make sure to restart to complete"
+try {
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
+    Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform -NoRestart
+
+    Write-Host "----------------"
+    Write-Host "Features Enabled. Make sure to restart to complete"
+}
+catch {
+    Write-Host "Error occured."
+    Write-Host $_
+}
+
